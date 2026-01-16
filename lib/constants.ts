@@ -48,6 +48,7 @@ export const MENU_TIERS = [
     price: 'AED 750',
     description: 'A refined midday journey through seasonal flavors.',
     duration: '~90 minutes',
+    featured: false,
   },
   {
     id: 'dinner',
@@ -67,6 +68,7 @@ export const MENU_TIERS = [
     price: 'AED 1,800',
     description: 'The ultimate expression. Rare ingredients. Extended journey.',
     duration: '~3 hours',
+    featured: false,
   },
 ] as const;
 

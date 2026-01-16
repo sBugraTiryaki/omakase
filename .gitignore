@@ -42,3 +42,10 @@ next-env.d.ts
 
 # playwright
 .playwright-mcp/
+
+# source images (already copied to public/images)
+/omakase-images/
+
+# plan files
+PLAN.md
+ANIMEJS_INSIGHTS.md

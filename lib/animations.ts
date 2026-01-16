@@ -337,14 +337,16 @@ export function drawPath(targets: string | SVGPathElement | SVGPathElement[], op
     ? document.querySelectorAll<SVGPathElement>(targets)
     : Array.isArray(targets) ? targets : [targets];
 
+  let totalLength = 0;
   paths.forEach(path => {
     const length = path.getTotalLength();
     path.style.strokeDasharray = String(length);
     path.style.strokeDashoffset = String(length);
+    totalLength = length;
   });
 
   return animate(targets, {
-    strokeDashoffset: [animate.get(targets, 'strokeDashoffset'), 0],
+    strokeDashoffset: [totalLength, 0],
     duration,
     delay,
     ease: LUXURY_EASE,

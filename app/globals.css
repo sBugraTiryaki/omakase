@@ -1,26 +1,425 @@
 @import "tailwindcss";
 
+/* ===== CSS Variables for Ultra Luxury Omakase Theme ===== */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Dark Backgrounds - Softer contrasts */
+  --color-luxury-black: #0a0a0a;
+  --color-luxury-charcoal: #141414;
+  --color-luxury-dark: #1a1a1a;
+  --color-luxury-darker: #0d0d0d;
+
+  /* Gold Accents */
+  --color-gold-primary: #D4AF37;
+  --color-gold-light: #E5C158;
+  --color-gold-dark: #B8860B;
+  --color-gold-muted: #C9A227;
+
+  /* Text Colors - Improved readability */
+  --color-text-primary: #FAFAFA;
+  --color-text-secondary: #E5E5E5;
+  --color-text-muted: #8a8a8a;
+  --color-text-cream: #F5F5DC;
+
+  /* Fonts */
+  --font-heading: var(--font-cormorant);
+  --font-body: var(--font-geist-sans);
 }
 
+/* ===== Tailwind v4 Theme Configuration ===== */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  /* Background Colors */
+  --color-background: var(--color-luxury-black);
+  --color-foreground: var(--color-text-primary);
+
+  /* Custom Colors */
+  --color-luxury-black: #0a0a0a;
+  --color-luxury-charcoal: #141414;
+  --color-luxury-dark: #1a1a1a;
+  --color-luxury-darker: #0d0d0d;
+
+  --color-gold: #D4AF37;
+  --color-gold-light: #E5C158;
+  --color-gold-dark: #B8860B;
+  --color-gold-muted: #C9A227;
+
+  --color-cream: #F5F5DC;
+  --color-text-muted: #8a8a8a;
+
+  /* Font Families */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-cormorant);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ===== Base Styles ===== */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-luxury-black);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+/* ===== Typography Enhancements ===== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 300;
+}
+
+p {
+  line-height: 1.8;
+}
+
+/* ===== 3D Perspective Container ===== */
+.perspective-container {
+  perspective: 1000px;
+  perspective-origin: center;
+}
+
+.perspective-deep {
+  perspective: 2000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* 3D Card base */
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card-3d:hover {
+  transform: translateY(-15px) rotateX(-5deg) translateZ(20px);
+}
+
+/* Parallax layers */
+.parallax-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.parallax-layer {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+.parallax-layer-back {
+  z-index: 1;
+}
+
+.parallax-layer-mid {
+  z-index: 2;
+}
+
+.parallax-layer-front {
+  z-index: 3;
+}
+
+/* ===== Custom Utility Classes ===== */
+.text-gradient-gold {
+  background: linear-gradient(135deg, var(--color-gold-light), var(--color-gold-primary), var(--color-gold-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-gradient-luxury {
+  background: linear-gradient(180deg, var(--color-luxury-black) 0%, var(--color-luxury-charcoal) 100%);
+}
+
+.bg-gradient-gold {
+  background: linear-gradient(135deg, var(--color-gold-dark), var(--color-gold-primary), var(--color-gold-light));
+}
+
+.border-gold-gradient {
+  border-image: linear-gradient(135deg, var(--color-gold-dark), var(--color-gold-primary)) 1;
+}
+
+/* Gold glow effect for special elements */
+.glow-gold {
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.3), 0 0 40px rgba(212, 175, 55, 0.1);
+}
+
+/* Luxury text shadow */
+.text-shadow-luxury {
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.9);
+}
+
+/* Section alternating backgrounds */
+.section-primary {
+  background-color: var(--color-luxury-black);
+}
+
+.section-secondary {
+  background-color: var(--color-luxury-charcoal);
+}
+
+.section-tertiary {
+  background-color: var(--color-luxury-dark);
+}
+
+/* Section transition overlay */
+.section-transition {
+  position: relative;
+}
+
+.section-transition::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to bottom, var(--color-luxury-black), transparent);
+  pointer-events: none;
+}
+
+/* ===== Scrollbar Styling ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-luxury-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold-dark);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-primary);
+}
+
+/* Selection Styling */
+::selection {
+  background: var(--color-gold-primary);
+  color: var(--color-luxury-black);
+}
+
+/* Smooth transitions for all interactive elements */
+a, button {
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Ultra luxury hover state */
+.luxury-hover {
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.luxury-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== Animations ===== */
+
+/* Ken Burns effect for hero images */
+@keyframes kenBurns {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.08);
+  }
+}
+
+.ken-burns {
+  animation: kenBurns 25s ease-out infinite alternate;
+}
+
+/* Subtle float animation */
+@keyframes floatSubtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.float-subtle {
+  animation: floatSubtle 6s ease-in-out infinite;
+}
+
+/* Reveal mask animation */
+.reveal-mask {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-mask.revealed {
+  clip-path: inset(0 0% 0 0);
+}
+
+/* Fade in up animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ===== Lenis Smooth Scroll ===== */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* ===== Scroll Snap for Gallery ===== */
+.snap-y-mandatory {
+  scroll-snap-type: y mandatory;
+}
+
+.snap-start {
+  scroll-snap-align: start;
+}
+
+.snap-always {
+  scroll-snap-stop: always;
+}
+
+/* ===== Lightbox Styles ===== */
+.lightbox-zoomable {
+  cursor: zoom-in;
+}
+
+.lightbox-zoomed {
+  cursor: zoom-out;
+}
+
+.lightbox-dragging {
+  cursor: grabbing;
+}
+
+/* ===== Mobile Responsive Enhancements ===== */
+
+/* Safe area insets for notched devices */
+:root {
+  --safe-area-top: env(safe-area-inset-top, 0px);
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-left: env(safe-area-inset-left, 0px);
+  --safe-area-right: env(safe-area-inset-right, 0px);
+}
+
+.safe-top {
+  padding-top: max(1.5rem, var(--safe-area-top));
+}
+
+.safe-bottom {
+  padding-bottom: max(1.5rem, var(--safe-area-bottom));
+}
+
+.safe-x {
+  padding-left: max(1rem, var(--safe-area-left));
+  padding-right: max(1rem, var(--safe-area-right));
+}
+
+/* Touch-friendly tap targets */
+.touch-target {
+  min-height: 48px;
+  min-width: 48px;
+}
+
+/* Prevent overscroll on touch devices */
+.overscroll-contain {
+  overscroll-behavior: contain;
+}
+
+/* iOS rubber-banding fix for sticky elements */
+@supports (-webkit-touch-callout: none) {
+  .sticky {
+    position: -webkit-sticky;
+  }
+}
+
+/* ===== Reduced Motion Support ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .ken-burns {
+    animation: none !important;
+  }
+
+  .float-subtle {
+    animation: none !important;
+  }
+
+  .parallax-layer {
+    will-change: auto;
+  }
+}
+
+/* ===== Mobile Performance Optimizations ===== */
+@media (hover: none) and (pointer: coarse) {
+  /* Disable 3D hover effects on touch devices */
+  .card-3d:hover {
+    transform: none;
+  }
+
+  /* Reduce will-change usage on mobile */
+  .parallax-layer {
+    will-change: auto;
+  }
+
+  /* Slower Ken Burns for better battery life */
+  .ken-burns {
+    animation-duration: 30s;
+  }
+}
+
+/* Small screen typography adjustments */
+@media (max-width: 640px) {
+  body {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  p {
+    line-height: 1.7;
+  }
+
+  h1, h2, h3, h4 {
+    letter-spacing: -0.01em;
+  }
 }
